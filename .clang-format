@@ -62,7 +62,7 @@ BraceWrapping:
   # catch之前
   BeforeCatch:	true
   # else之前
-  BeforeElse:	true
+  BeforeElse:	false
   # 缩进大括号
   IndentBraces:	false
 # 在二元运算符前换行: None(在操作符后换行), NonAssignment(在非赋值的操作符前换行), All(在操作符前换行)

@@ -9,12 +9,15 @@ set(PROJECT_TEST_BINARY_DIR ${CMAKE_SOURCE_DIR}/build/test/)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_TEST_BINARY_DIR})
 
 set(CMAKE_CXX_STANDARD 17)
-
-add_executable(test_unique_ptr unique_ptr_test.cpp)
-add_executable(test_shared_ptr shared_ptr_test.cpp)
-add_executable(test_weak_ptr weak_ptr_test.cpp)
-
 find_package(GTest CONFIG REQUIRED)
-target_link_libraries(test_unique_ptr PRIVATE GTest::gmock GTest::gtest GTest::gmock_main GTest::gtest_main)
-target_link_libraries(test_shared_ptr PRIVATE GTest::gmock GTest::gtest GTest::gmock_main GTest::gtest_main)
-target_link_libraries(test_weak_ptr PRIVATE GTest::gmock GTest::gtest GTest::gmock_main GTest::gtest_main)
+
+macro(build_test arg)
+    add_executable(test_${arg} ${arg}_test.cpp)
+    target_link_libraries(test_${arg} PRIVATE GTest::gmock GTest::gtest GTest::gmock_main GTest::gtest_main)
+endmacro(build_test arg)
+
+build_test(unique_ptr)
+build_test(shared_ptr)
+build_test(weak_ptr)
+build_test(array)
+build_test(vector)
